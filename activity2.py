@@ -1,0 +1,1 @@
+print("Hello,world miss ko na sya")
