@@ -1,31 +1,45 @@
 #Global Freight Calculator
 
 
-Sender_name = input("Sender's the name -----> ")
-Type_of_item = input("What is the item being shipped? -----> ")
-is_Fragile = bool(input("Is thy Item fragile? -----> "))
-weight = float(input("What is the weight of the item? -----> "))
-distance = float(input("What is the distance of thy home? ------> "))
-is_express = bool(input("Is the order a express order? ------> "))
-is_international = bool(input("Is the order an international order? ------> "))
+# Global Freight Calculator
 
-print("The name is", Sender_name)
-print("The item being shipped is", Type_of_item)
+Sender_Name = input("Name of Sender? ---> ")
+Type_of_Item = input("Type of Item? ---> ")
+Is_Fragile = bool(input("Is Fragile?(Enter \"yes\" if yes, press Enter if no) ---> "))
+weight = float(input("Weight of the object? (in kg) ---> "))
+distance = float(input("distance (In km) ----> "))
+is_express = bool(input("Express? (Enter \"yes\" if yes, press Enter if no) ---> "))
+is_international = bool(input("International? (Enter \"yes\" if yes, press Enter if no) ---> "))
 
-if is_Fragile == 'True':
-    print("We will notify thy carrier.")
+# Calculating base cost
+base_cost = (weight * 2.5) + (distance * .15)
+
+# Free shipping
+if weight <= 2 and distance <= 100 and is_express == False and is_international == False:
+    print("Free Shipping!!")
+    Total = 0
+
+# International Express
+elif is_international == True and is_express == True:
+    print("Package is International is applied")
+    Total = (base_cost * 1.4) + 50
+
+# Express or Heavy International
+elif is_express == True or (is_international == True and weight > 20):
+    print("Package is Express or Heavy International is applied")
+    Total = (base_cost * 1.2) + 25
+
+# Oversized
+elif weight > 30 or distance > 1000:
+    print("Oversized is applied")
+    Total = base_cost + 30
+
+# Standard rate
 else:
-    print("Thank the for answering.")
+    print("Standard rate is applied")
+    Total = base_cost
 
-print("The weight of the item is", weight, "kg")
-print("The distance of the place is", distance, "km")
-
-base_cost = (weight * 2.50) + (distance * 0.15)
-
-Total1 = (base_cost * 1.40) + 50
-Total2 = (base_cost * 1.20) + 25
-Total3 = (base_cost + 30)
-Total4 = (base_cost)
-
-if weight <= 2.0 and distance <= 100 and is_international == 'False' and is_express == 'False':
-    print("You have free shipping for this item.")
+print("------------------------------")
+print("Name of the sender : ", Sender_Name)
+print("Type of Item : ", Type_of_Item)
+print("Total Output : PHP ", Total)
