@@ -1,0 +1,15 @@
+#1
+
+for a in range(8,0, -1):
+
+    for x in range(1,a):
+
+        print ("8", end=" ")
+
+for y in range(1,6):
+
+    for x in range(1,y):
+ 
+        print (y, end = " ")
+
+    print(y)
