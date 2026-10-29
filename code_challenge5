@@ -1,0 +1,9 @@
+n = int(input("Input size of X: "))
+
+for x in range(n):
+    for y in range(n):
+        if x == y or x + y == n - 1:
+            print("X", end=" ")
+        else:
+            print(" ", end=" ")
+    print()
